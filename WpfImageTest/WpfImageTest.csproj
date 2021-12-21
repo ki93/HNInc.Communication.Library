@@ -12,9 +12,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="HNInc.Communication.Library">
-      <HintPath>..\HNInc.Communication.Library\bin\Debug\net5.0\HNInc.Communication.Library.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\HNInc.Communication.Library\HNInc.Communication.Library.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="SocketIOClient">
       <HintPath>..\HNInc.Communication.Library\bin\Debug\net5.0\SocketIOClient.dll</HintPath>
     </Reference>

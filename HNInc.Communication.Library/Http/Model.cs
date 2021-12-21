@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HNInc.Communication.Library.Http;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text.Json.Serialization;
@@ -216,14 +217,17 @@ namespace HNInc.Communication.Library
         [JsonPropertyName("endTime")]
         public string _endTime { get; set; }
         [JsonPropertyName("predictImg")]
-        public byte[] _imageBytes { get; set; }
+        [JsonConverter(typeof(ByteArrayConverter))]
+        public Byte[] _imageBytes { get; set; }
+        [JsonPropertyName("imgSize")]
+        public int _imageSize { get; set; }
         public string _requestResult { get; set; }
         #endregion
 
         #region 생성자
         public HttpQualityInformaiton(){}
 
-        public HttpQualityInformaiton(string opcode, string serialNumber, string fileName, string accuracy, string predict, string startTime, string endTime, byte[] imageBytes, string requestResult)
+        public HttpQualityInformaiton(string opcode, string serialNumber, string fileName, string accuracy, string predict, string startTime, string endTime, byte[] imageBytes, int imageSize, string requestResult)
         {
             _opcode = opcode;
             _serialNumber = serialNumber;
@@ -233,11 +237,12 @@ namespace HNInc.Communication.Library
             _startTime = startTime;
             _endTime = endTime;
             _imageBytes = imageBytes;
+            _imageSize = imageSize;
             _requestResult = requestResult;
         }
         #endregion
         #region ToString 재정의
-        public override string ToString() => $"OPCode : {_opcode},SerialNumber : {_serialNumber},FileName : {_fileName},Accuracy : {_accuracy},Predict : {_predict}, ImageBytes : {_imageBytes}, RequestResult : {_requestResult}";
+        public override string ToString() => $"OPCode : {_opcode},SerialNumber : {_serialNumber},FileName : {_fileName},Accuracy : {_accuracy},Predict : {_predict}, ImageBytes : {_imageBytes}, ImageSize : {_imageSize}, RequestResult : {_requestResult}";
         #endregion
     }
     public class HttpAuthentication

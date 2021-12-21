@@ -38,14 +38,14 @@ namespace ConsoleApp1
             //HttpAuthentication authentication = HNHttp.CheckAuthentication("admin", "1234");
             //Console.WriteLine(authentication.ToString());
             //9 보내주는 format 수정 필요(시리얼 넘버 굳이 감쌀 필요가?)
-            List<HttpProductInformation> productInformations = HNHttp.GetProductInformation(0);
-            foreach (var item in productInformations)
-            {
-                Console.WriteLine(item.ToString());
-            }
+            //List<HttpProductInformation> productInformations = HNHttp.GetProductInformation(0);
+            //foreach (var item in productInformations)
+            //{
+            //    Console.WriteLine(item.ToString());
+            //}
             //10 문의 필요 바이트 안들어옴
-            //HttpQualityInformaiton qualityInformaiton = HNHttp.GetQualityInformaiton(true);
-            //Console.WriteLine(qualityInformaiton.ToString());
+            HttpQualityInformaiton qualityInformaiton = HNHttp.GetQualityInformaiton();
+            Console.WriteLine(qualityInformaiton._imageBytes.Length);
             //TimeSpan timeSpan = TimeSpan.FromMilliseconds(Double.Parse("200851.4"));
             //Debug.WriteLine($"{timeSpan.Minutes}, {timeSpan.Seconds}");
         }

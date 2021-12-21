@@ -389,12 +389,11 @@ namespace HNInc.Communication.Library
             }
             return productInformations;
         }
-        public static HttpQualityInformaiton GetQualityInformaiton(bool imageExist)
+        public static HttpQualityInformaiton GetQualityInformaiton()
         {
             HttpQualityInformaiton qualityInformaiton = null;
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.Append("http://9.8.100.153:8082/quality/history?");
-            stringBuilder.AppendFormat("image={0}", imageExist);
             string URI = stringBuilder.ToString();
             WebRequest request = (HttpWebRequest)WebRequest.Create(URI);
             WebResponse response;
@@ -418,7 +417,8 @@ namespace HNInc.Communication.Library
             }
             catch (Exception e)
             {
-                qualityInformaiton = new HttpQualityInformaiton("Error", "Error", "Error", "Error", "Error", "Error", "Error", null, e.Message);
+                Debug.WriteLine(e.ToString());
+                qualityInformaiton = new HttpQualityInformaiton("Error", "Error", "Error", "Error", "Error", "Error", "Error", null, -1, e.Message);
             }
             return qualityInformaiton;
         }

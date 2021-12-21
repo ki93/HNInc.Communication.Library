@@ -5,11 +5,12 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <ApplicationIcon />
     <Win32Resource />
-    <AssemblyVersion>0.0.1.5</AssemblyVersion>
-    <FileVersion>0.0.1.5</FileVersion>
-    <Version>0.0.1.5</Version>
+    <AssemblyVersion>0.0.1.6</AssemblyVersion>
+    <FileVersion>0.0.1.6</FileVersion>
+    <Version>0.0.1.6</Version>
     <PackageReleaseNotes>http API 추가
-1. product information 수신 오류 임시 해결 추후 개선 예정</PackageReleaseNotes>
+1. product information API 변경
+- 항상 binary data 포함해서 수신</PackageReleaseNotes>
     <Description>CNC Tool Monitoring에 들어가는 Server와의 통신API</Description>
   </PropertyGroup>
 

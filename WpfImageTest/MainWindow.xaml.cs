@@ -59,6 +59,7 @@ namespace WpfImageTest
             string[] vs = readImageName1.Split(",");
             Debug.WriteLine(vs[0]);
             Debug.WriteLine(vs[1]);
+            Input_Image();
             //File.WriteAllText(recentImageNameFilePath, String.Empty);
             //string readImageName2 = File.ReadAllText(recentImageNameFilePath);
             //Debug.WriteLine(readImageName2);
@@ -72,31 +73,33 @@ namespace WpfImageTest
         }
 
 
-        private async void Input_Image(string eventname, object e)
+        private async void Input_Image()
         {
-            Quality quality = (Quality)e;
+            HttpQualityInformaiton quality = HNHttp.GetQualityInformaiton();
             //not null 처리 필요
             Debug.WriteLine(quality._imageBytes.Length);
             MemoryStream memoryStream = new MemoryStream(quality._imageBytes);
             Debug.WriteLine(memoryStream.Length);
-            System.Drawing.Image image = System.Drawing.Image.FromStream(memoryStream);
+            Debug.WriteLine(quality._requestResult);
             string currentPath = AppDomain.CurrentDomain.BaseDirectory;
             string imagePath = Path.Combine(currentPath, @"Image\");
             bool checkPath = Directory.Exists(imagePath);
-
             if (!checkPath)
             {
                 Directory.CreateDirectory(imagePath);
             }
             string path = Path.Combine(imagePath, quality._fileName);
-            Debug.WriteLine(path);
-            image.Save(path, System.Drawing.Imaging.ImageFormat.Jpeg);
-            image.Dispose();
-            memoryStream.Flush();
-            memoryStream.Dispose();
-            memoryStream.Close();
-
-
+            try 
+            {
+                System.Drawing.Image image = System.Drawing.Image.FromStream(memoryStream);
+                Debug.WriteLine(path);
+                image.Save(path, System.Drawing.Imaging.ImageFormat.Jpeg);
+                image.Dispose();
+                memoryStream.Flush();
+                memoryStream.Dispose();
+                memoryStream.Close();
+            }
+            catch(Exception e){ Debug.WriteLine(e.ToString()); }
             await Task.Factory.StartNew(() =>
             {
                 this.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
