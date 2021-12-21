@@ -24,6 +24,7 @@ namespace HNInc.Communication.Library
         public event FuncDelegate ProductInformationEvent;
         #endregion 
         //Default
+        #region Constructor
         public HNSocketIO()
         {
             _socketIO = new SocketIO(new Uri("http://9.8.100.153:8082/"), new SocketIOOptions
@@ -77,6 +78,8 @@ namespace HNInc.Communication.Library
             _socketIO.OnDisconnected += SocketOnDisconnected;
             _socketIO.OnReconnectAttempt += SocketOnReconnecting;
         }
+        #endregion 
+        #region SocketIO Event
         private static void SocketOnReconnecting(object sender, int e)
         {
             Console.WriteLine($"{DateTime.Now} Reconnecting: attempt = {e}");
@@ -99,6 +102,8 @@ namespace HNInc.Communication.Library
         {
             Console.WriteLine("Pong: " + e.TotalMilliseconds);
         }
+        #endregion 
+        #region Method
         public void Connect()
         {
             if (!_socketIO.Connected)
@@ -292,6 +297,7 @@ namespace HNInc.Communication.Library
             string eventNameString = eventName.ToString();
             _socketIO.Off(eventNameString);
         }
+        #endregion 
     }
 }
 

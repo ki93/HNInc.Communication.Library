@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace HNInc.Communication.Library.Http
 {
-    public class ByteArrayConverter : JsonConverter<byte[]>
+    class ByteArrayConverter : JsonConverter<byte[]>
     {
         public override byte[] Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
