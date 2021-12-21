@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="8.0.27" />
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="HNInc.Communication.Library">
+      <HintPath>..\HNInc.Communication.Library\bin\Debug\net5.0\HNInc.Communication.Library.dll</HintPath>
+    </Reference>
+    <Reference Include="SocketIOClient">
+      <HintPath>..\HNInc.Communication.Library\bin\Debug\net5.0\SocketIOClient.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

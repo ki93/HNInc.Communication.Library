@@ -1,0 +1,17 @@
+﻿<Window x:Class="WpfImageTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfImageTest"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Image Source="/Resources/item-A202111251030177.jpeg" Margin="441,4,42,200"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="232,318,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <TextBlock x:Name="UiText1" Text="0000000000000" FontSize="20"   Margin="0,74,0,315"></TextBlock>
+        <TextBlock x:Name="UiText2" Text="0000000000000" FontSize="20"   Margin="0,123,0,266"/>
+        <TextBlock x:Name="UiText3" Text="0000000000000" FontSize="20"   Margin="0,170,0,219"/>
+        <Image x:Name="Image"  Margin="451,34,52,177" ></Image>
+    </Grid>
+</Window>
