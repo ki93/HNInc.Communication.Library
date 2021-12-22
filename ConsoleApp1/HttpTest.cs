@@ -24,11 +24,11 @@ namespace ConsoleApp1
             //Console.WriteLine(productCounts.Count);
             //Console.WriteLine(productCounts[0].ToString());
             ////5
-            //List<HttpSpindleLoad> spindleLoads = HNHttp.GetSpindleLoadRequest(new DateTime(2021, 11, 29), new DateTime(2021, 11, 30), HttpOPCode.OP10_3, "10s");
-            //Console.WriteLine(spindleLoads[spindleLoads.Count - 1].ToString());
+            List<HttpSpindleLoad> spindleLoads = HNHttp.GetSpindleLoadRequest(new DateTime(2021, 11, 29), new DateTime(2021, 11, 30), HttpOPCode.OP10_3, "10s");
+            Console.WriteLine(spindleLoads[spindleLoads.Count - 1].ToString());
             ////6 
-            //List<HttpCycleInformaiton> cycleInformaitons = HNHttp.GetCycleInformationRequest(HttpOPCode.OP10_3, "A202111291030023");
-            //Console.WriteLine(cycleInformaitons[0].ToString());
+            List<HttpCycleInformaiton> cycleInformaitons = HNHttp.GetCycleInformationRequest(HttpOPCode.OP10_3, "A202111291030023");
+            Console.WriteLine(cycleInformaitons[0].ToString());
             ////테스트 중
             //7
             //List<HttpCycleTime> cycleTimes = HNHttp.GetCycleTimeListRequest(HttpOPCode.OP10_3, 2);
@@ -44,8 +44,8 @@ namespace ConsoleApp1
             //    Console.WriteLine(item.ToString());
             //}
             //10 문의 필요 바이트 안들어옴
-            HttpQualityInformaiton qualityInformaiton = HNHttp.GetQualityInformaiton();
-            Console.WriteLine(qualityInformaiton._imageBytes.Length);
+            //HttpQualityInformaiton qualityInformaiton = HNHttp.GetQualityInformaiton();
+            //Console.WriteLine(qualityInformaiton._imageBytes.Length);
             //TimeSpan timeSpan = TimeSpan.FromMilliseconds(Double.Parse("200851.4"));
             //Debug.WriteLine($"{timeSpan.Minutes}, {timeSpan.Seconds}");
         }

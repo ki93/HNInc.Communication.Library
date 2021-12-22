@@ -13,7 +13,7 @@ namespace HNInc.Communication.Library
     public class HNHttp
     {
         // 생성자 필요
-        public static HttpDeiviceHealthCheck GetDeiviceHealthCheckRequest(HttpOPCode oPCode)
+        public static HttpDeiviceHealthCheck GetDeiviceHealthCheck(HttpOPCode oPCode)
         {
             HttpDeiviceHealthCheck deiviceHealthCheck = new HttpDeiviceHealthCheck();
             // Create a request for the URL.
@@ -57,7 +57,7 @@ namespace HNInc.Communication.Library
             }
             return deiviceHealthCheck;
         }
-        public static List<HttpProductCounts> GetProductCountsRequest(DateTime startTime, DateTime endTime, HttpOPCode oPCode, HttpClassification classification)
+        public static List<HttpProductCounts> GetProductCountsList(DateTime startTime, DateTime endTime, HttpOPCode oPCode, HttpClassification classification)
         {
             HttpProductCounts productCounts = null;
             List<HttpProductCounts> productCountList = new List<HttpProductCounts>();
@@ -104,7 +104,7 @@ namespace HNInc.Communication.Library
             }
             return productCountList;
         }
-        public static List<HttpCycleTime> GetCycleTimeListRequest(HttpOPCode oPCode, int count)
+        public static List<HttpCycleTime> GetCycleTimeList(HttpOPCode oPCode, int count)
         {
             HttpCycleTime cycleTime = null;
             List<HttpCycleTime> cycleTimes = new List<HttpCycleTime>();
@@ -140,7 +140,7 @@ namespace HNInc.Communication.Library
             }
             return cycleTimes;
         }
-        public static HttpCycleTimeAverage GetCycleTimeAverageRequest(int count)
+        public static HttpCycleTimeAverage GetCycleTimeAverage(int count)
         {
             HttpCycleTimeAverage cycleTimeAverage = null;
             StringBuilder stringBuilder = new StringBuilder();
@@ -172,7 +172,7 @@ namespace HNInc.Communication.Library
             }
             return cycleTimeAverage;
         }
-        public static List<HttpCycleInformaiton> GetCycleInformationRequest(HttpOPCode oPCode, string serialNumber)
+        public static List<HttpCycleInformaiton> GetCycleInformationList(HttpOPCode oPCode, string serialNumber)
         {
             HttpCycleInformaiton cycleInformaiton = null;
             List<HttpCycleInformaiton> cycleInformaitons = new List<HttpCycleInformaiton>();
@@ -221,7 +221,7 @@ namespace HNInc.Communication.Library
             }
             return cycleInformaitons;
         }
-        public static HttpRealTimeCount GetRealTimeCountRequest(HttpOPCode oPCode)
+        public static HttpRealTimeCount GetRealTimeCount(HttpOPCode oPCode)
         {
             HttpRealTimeCount realTimeCount = null;
             StringBuilder stringBuilder = new StringBuilder();
@@ -254,7 +254,7 @@ namespace HNInc.Communication.Library
             }
             return realTimeCount;
         }
-        public static List<HttpSpindleLoad> GetSpindleLoadRequest(DateTime startTime, DateTime endTime, HttpOPCode oPCode, string groupBy)
+        public static List<HttpSpindleLoad> GetSpindleLoadList(DateTime startTime, DateTime endTime, HttpOPCode oPCode, string groupBy)
         {
             HttpSpindleLoad spindleLoad = null;
             List<HttpSpindleLoad> spindleLoads = new List<HttpSpindleLoad>();
@@ -308,7 +308,7 @@ namespace HNInc.Communication.Library
             }
             return spindleLoads;
         }
-        public static List<HttpProductInformation> GetProductInformation(int days)
+        public static List<HttpProductInformation> GetProductInformationList(int days)
         {
             HttpProductInformation productInformation = null;
             List<HttpProductInformation> productInformations = new List<HttpProductInformation>();
