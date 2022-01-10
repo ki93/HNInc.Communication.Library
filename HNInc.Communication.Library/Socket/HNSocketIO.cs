@@ -16,13 +16,17 @@ namespace HNInc.Communication.Library
         #endregion 
         #region Event
         public delegate void FuncDelegate(string evetName, object data);
+        public delegate void DeliverDelegate(object sender, object data);
         public event FuncDelegate AnyDataEvent;
         public event FuncDelegate RealTimeLossEvent;
         public event FuncDelegate RealTimeLoadEvent;
         public event FuncDelegate QualityJudgmentProgresStartEvent;
         public event FuncDelegate QualityJudgmentProgresEndEvent;
         public event FuncDelegate ProductInformationEvent;
-        #endregion 
+        public event DeliverDelegate SocketConnectedEvent;
+        public event DeliverDelegate SocketDisConnectedEvent;
+        public event DeliverDelegate SocketConnectingEvent;
+        #endregion
         //Default
         #region Constructor
         public HNSocketIO()
@@ -80,19 +84,43 @@ namespace HNInc.Communication.Library
         }
         #endregion 
         #region SocketIO Event
-        private static void SocketOnReconnecting(object sender, int e)
+        private void SocketOnReconnecting(object sender, int e)
         {
             Console.WriteLine($"{DateTime.Now} Reconnecting: attempt = {e}");
+            if (SocketConnectingEvent != null)
+            {
+                SocketConnectingEvent(sender, e);
+            }
+            else
+            {
+                Debug.WriteLine("SocketConnectingEvent is NULL, Register SocketConnectingEvent");
+            }
         }
-        private static void SocketOnDisconnected(object sender, string e)
+        private void SocketOnDisconnected(object sender, string e)
         {
             Console.WriteLine("disconnect: " + e);
+            if (SocketDisConnectedEvent != null)
+            {
+                SocketDisConnectedEvent(sender, e);
+            }
+            else
+            {
+                Debug.WriteLine("SocketDisConnectedEvent is NULL, Register SocketDisConnectedEvent");
+            }
         }
-        private static void SocketOnConnected(object sender, EventArgs e)
+        private void SocketOnConnected(object sender, EventArgs e)
         {
             Debug.WriteLine("Socket_OnConnected");
             var socket = sender as SocketIO;
             Debug.WriteLine("Socket.Id:" + socket.Id);
+            if (SocketConnectedEvent != null)
+            {
+                SocketConnectedEvent(sender, e);
+            }
+            else
+            {
+                Debug.WriteLine("SocketOnConnected is NULL, Register SocketOnConnected");
+            }
         }
         private static void SocketOnPing(object sender, EventArgs e)
         {
@@ -106,23 +134,7 @@ namespace HNInc.Communication.Library
         #region Method
         public void Connect()
         {
-            if (!_socketIO.Connected)
-            {
-                _reconnectionCount++;
-                try
-                {
-                    _socketIO.ConnectAsync();
-                }
-                catch(Exception e)
-                {
-                    Debug.WriteLine($"{DateTime.Now} Try Connect : attempt = {_reconnectionCount}, Error Message : {e.Message}");
-                    if (_reconnectionCount == _reconnectionLimmit)
-                    {
-                        return;
-                    }
-                    Connect();
-                }
-            }
+            _socketIO.ConnectAsync();
         }
         public Boolean IsConnected()
         {
@@ -139,14 +151,15 @@ namespace HNInc.Communication.Library
             {
                 _socketIO.EmitAsync(eventName.ToString(), DateTime.Now.ToString());
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                Debug.WriteLine($"{DateTime.Now} Error Message : {e.Message}");
+                Debug.WriteLine($"{DateTime.Now} Error Message : {e.ToString()}");
             }
         }
         public void ReceiveAnyData()
         {
-            _socketIO.OnAny((eventName, response) => {
+            _socketIO.OnAny((eventName, response) =>
+            {
                 if (AnyDataEvent != null)
                 {
                     AnyDataEvent(eventName, response.GetValue().ToString());
@@ -185,7 +198,7 @@ namespace HNInc.Communication.Library
             string eventName = SocketEventNames.RTLoadData.ToString();
             _socketIO.On(eventName, response =>
             {
-                
+
                 //split try catch 설정
                 string[] receiveDataArray;
                 try
@@ -209,7 +222,7 @@ namespace HNInc.Communication.Library
                         rTLoads.Add(realTimeLoad);
                     }
                 }
-               if (RealTimeLoadEvent != null)
+                if (RealTimeLoadEvent != null)
                 {
                     RealTimeLoadEvent(eventName, rTLoads);
                 }
@@ -277,7 +290,7 @@ namespace HNInc.Communication.Library
                 string startTime = responseValue.GetProperty("startTime").GetString();
                 string endTime = responseValue.GetProperty("endTime").GetString();
                 string mae = responseValue.GetProperty("mae").GetString();
-                if (temp.Equals("0")&&mae.Equals("abnormal"))
+                if (temp.Equals("0") && mae.Equals("abnormal"))
                 {
                     predict = "Abnormal data exists. Please check...";
                 }
