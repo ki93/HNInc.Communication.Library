@@ -5,9 +5,9 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <ApplicationIcon />
     <Win32Resource />
-    <AssemblyVersion>0.0.1.8</AssemblyVersion>
-    <FileVersion>0.0.1.8</FileVersion>
-    <Version>0.0.1.8</Version>
+    <AssemblyVersion>0.0.1.9</AssemblyVersion>
+    <FileVersion>0.0.1.9</FileVersion>
+    <Version>0.0.1.9</Version>
     <PackageReleaseNotes>Socket Event 추가
 1. 소켓 연결 event
 2. 소켓 연결 시도 event
@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <PackageReference Include="MySql.Data" Version="8.0.27" />
-    <PackageReference Include="SocketIOClient" Version="3.0.3" />
+    <PackageReference Include="SocketIOClient" Version="3.0.5" />
   </ItemGroup>
 
 </Project>
