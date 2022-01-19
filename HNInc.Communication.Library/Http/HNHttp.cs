@@ -437,7 +437,7 @@ namespace HNInc.Communication.Library
             //Connection
             HttpAuthentication authentication = new HttpAuthentication();
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append("Server=9.8.100.151;");
+            stringBuilder.Append("Server=192.168.76.151;");
             stringBuilder.Append("Port=3306;");
             stringBuilder.Append("Uid=root;");
             stringBuilder.Append("Pwd=!234567890;");
