@@ -16,10 +16,10 @@ namespace HNInc.Communication.Library
         string _accountDBUrl;
         string _accountDB;
         // 생성자 필요
-        public HNHttp(Uri wasUrl, Uri accountDBUrl, string accountDB)
+        public HNHttp(string wasUrl, string accountDBUrl, string accountDB)
         {
-            _wasUrl = wasUrl.AbsolutePath;
-            _accountDBUrl = accountDBUrl.AbsolutePath;
+            _wasUrl = wasUrl;
+            _accountDBUrl = accountDBUrl;
             _accountDB = accountDB;
         }
         public HttpDeiviceHealthCheck GetDeiviceHealthCheck(HttpOPCode oPCode)
