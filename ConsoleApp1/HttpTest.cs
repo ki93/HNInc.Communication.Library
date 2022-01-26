@@ -28,7 +28,9 @@ namespace ConsoleApp1
             //List<HttpSpindleLoad> spindleLoads = HNHttp.GetSpindleLoadRequest(new DateTime(2021, 11, 29), new DateTime(2021, 11, 30), HttpOPCode.OP10_3, "10s");
             //Console.WriteLine(spindleLoads[spindleLoads.Count - 1].ToString());
             ////6 
-            //List<HttpCycleInformaiton> cycleInformaitons = HNHttp.GetCycleInformationRequest(HttpOPCode.OP10_3, "A202111291030023");
+            //DateTime dateTime = new DateTime(2022, 01, 26, 11, 45, 17);
+            //DateTime dateTime2 = new DateTime(2022, 01, 26, 11, 48, 34);
+            //List <HttpCycleInformaiton> cycleInformaitons = hNHttp.GetCycleInformationList(HttpOPCode.OP10_3,dateTime,dateTime2);
             //Console.WriteLine(cycleInformaitons[0].ToString());
             ////테스트 중
             //7
@@ -39,11 +41,11 @@ namespace ConsoleApp1
             //HttpAuthentication authentication = HNHttp.CheckAuthentication("admin", "1234");
             //Console.WriteLine(authentication.ToString());
             //9 보내주는 format 수정 필요(시리얼 넘버 굳이 감쌀 필요가?)
-            List <HttpProductInformation> productInformations = hNHttp.GetProductInformationList(1);
-            foreach (var item in productInformations)
-            {
-                Console.WriteLine(item.ToString());
-            }
+            //List <HttpProductInformation> productInformations = hNHttp.GetProductInformationList(1);
+            //foreach (var item in productInformations)
+            //{
+            //    Console.WriteLine(item.ToString());
+            //}
             //10 문의 필요 바이트 안들어옴
             //HttpQualityInformaiton qualityInformaiton = HNHttp.GetQualityInformaiton();
             //Console.WriteLine(qualityInformaiton._imageBytes.Length);
