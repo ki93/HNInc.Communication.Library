@@ -341,39 +341,15 @@ namespace HNInc.Communication.Library
                         string getResponse = reader.ReadToEnd();
                         //split try catch 설정
                         // 현재 오류 Mae가 비는 오류가 있음
-                        //string[] receiveDataArray = getResponse.ToString().Split(new string[] { "{", "}", "[", "]", ":", "\"", ",", "\n","\\"}, StringSplitOptions.RemoveEmptyEntries);
-                        //// 배열 null 혹은 개수 체크
-                        //foreach (var item in receiveDataArray)
-                        //{
-                        //    Debug.WriteLine(item);
-                        //}
-                        //if (receiveDataArray != null)
-                        //{
-                        //    for (int i = 0; i < receiveDataArray.Length; i = i + 15)
-                        //    {
-                        //        string opCode = receiveDataArray[i + 2];
-                        //        string serialNumber = receiveDataArray[i + 4];
-                        //        string accuracy = receiveDataArray[i + 6];
-                        //        string predict = Enum.GetName(typeof(HttpAbnormalProblems), Int32.Parse(receiveDataArray[i + 8]));
-                        //        string startTime = receiveDataArray[i + 10];
-                        //        string endTime = receiveDataArray[i + 12];
-                        //        string mae = receiveDataArray[i + 14];
-                        //        string requestResult = "Success";
-                        //        if (receiveDataArray[i + 8].Equals("0") && mae.Equals("abnormal"))
-                        //        {
-                        //            predict = "Abnormal data exists. Please check...";
-                        //        }
-                        //        productInformation = new HttpProductInformation(opCode,serialNumber,accuracy,predict,startTime,endTime,mae,requestResult);
-                        //        Debug.WriteLine(productInformation);
-                        //        productInformations.Add(productInformation);
-                        //    }
-                        //}
-                        //임시 방편
-                        string[] receiveDataArray = getResponse.ToString().Split(new string[] { "{", "}", "[", "]", ":", "\"", ",", "\n", "\\","mae", "abnormal","normal" }, StringSplitOptions.RemoveEmptyEntries);
+                        string[] receiveDataArray = getResponse.ToString().Split(new string[] { "{", "}", "[", "]", ":", "\"", ",", "\n", "\\" }, StringSplitOptions.RemoveEmptyEntries);
                         // 배열 null 혹은 개수 체크
+                        foreach (var item in receiveDataArray)
+                        {
+                            Debug.WriteLine(item);
+                        }
                         if (receiveDataArray != null)
                         {
-                            for (int i = 0; i < receiveDataArray.Length; i = i + 13)
+                            for (int i = 0; i < receiveDataArray.Length; i = i + 15)
                             {
                                 string opCode = receiveDataArray[i + 2];
                                 string serialNumber = receiveDataArray[i + 4];
@@ -381,8 +357,20 @@ namespace HNInc.Communication.Library
                                 string predict = Enum.GetName(typeof(HttpAbnormalProblems), Int32.Parse(receiveDataArray[i + 8]));
                                 string startTime = receiveDataArray[i + 10];
                                 string endTime = receiveDataArray[i + 12];
+                                string mae = receiveDataArray[i + 14];
                                 string requestResult = "Success";
-                                productInformation = new HttpProductInformation(opCode, serialNumber, accuracy, predict, startTime, endTime, requestResult);
+                                if (mae != null)
+                                {
+                                    if (receiveDataArray[i + 8].Equals("0") && mae.Equals("abnormal"))
+                                    {
+                                        predict = "Abnormal data exists. Please check...";
+                                    }
+                                }
+                                else
+                                {
+                                    predict += ", but some mae is null";
+                                }
+                                productInformation = new HttpProductInformation(opCode, serialNumber, accuracy, predict, startTime, endTime, mae, requestResult);
                                 Debug.WriteLine(productInformation);
                                 productInformations.Add(productInformation);
                             }
